@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>무드튠</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="appbar">
+    <b>무드튠</b>
+    <span class="badge" id="status">미연결</span>
+  </header>
+
+  <main class="screen" id="screen">
+    <section id="s-home">
+      <h2>지금 기분이 어때요?</h2>
+      <div class="chips" id="chips"></div>
+      <div class="kwrow">
+        <input id="kw" type="text" maxlength="20" placeholder="직접 입력 (예: 피곤해, 설레)" autocomplete="off" aria-label="기분 키워드 직접 입력">
+        <button class="btn" id="kwBtn" type="button">추가</button>
+      </div>
+      <p class="hint" id="hint" aria-live="polite">최대 3개까지 고를 수 있어요.</p>
+
+      <div class="ctl">
+        <div class="lbl"><span>추천 방향</span></div>
+        <div class="seg" id="seg" role="group" aria-label="추천 방향">
+          <button type="button" data-mode="same" aria-pressed="true">공감</button>
+          <button type="button" data-mode="lift" aria-pressed="false">기분 전환</button>
+          <button type="button" data-mode="calm" aria-pressed="false">진정</button>
+        </div>
+        <p class="segnote" id="segnote"></p>
+      </div>
+      <div class="ctl">
+        <div class="lbl"><label for="tension">에너지 조절</label><b id="tv">0</b></div>
+        <input id="tension" type="range" min="0" max="100" value="50">
+        <div class="rng"><span>더 잔잔하게</span><span>더 힘 있게</span></div>
+      </div>
+
+      <div class="mapcard">
+        <div class="cap"><span>기분 지도 · 작은 점은 내 서버의 곡</span><b id="tgt"></b></div>
+        <div id="map"></div>
+      </div>
+
+      <div class="rhead" id="rhead">
+        <b>어울리는 곡</b>
+        <span id="rcount"></span>
+        <button class="btn sm" id="reroll" type="button">다시 섞기</button>
+      </div>
+      <ol class="trks" id="list"></ol>
+      <p class="note" id="listNote"></p>
+    </section>
+
+    <section id="s-lib" hidden>
+      <h2>보관함</h2>
+      <p class="note">하트는 Navidrome 서버의 즐겨찾기에 저장돼서 다른 앱에서도 보여요.</p>
+      <ol class="trks" id="libList"></ol>
+    </section>
+
+    <section id="s-log" hidden>
+      <h2>기분 기록</h2>
+      <p class="note">이 기기의 브라우저에만 저장돼요.</p>
+      <div id="logList"></div>
+    </section>
+
+    <section id="s-set" hidden>
+      <h2>서버 연결</h2>
+      <p class="note" id="proxyNote"></p>
+      <form id="form" autocomplete="on">
+        <label for="f-url">서버 주소</label>
+        <input id="f-url" type="text" inputmode="url" placeholder="https://music.example.com" autocomplete="url" spellcheck="false">
+        <label for="f-user">사용자 이름</label>
+        <input id="f-user" type="text" autocomplete="username" spellcheck="false">
+        <label for="f-pass">비밀번호</label>
+        <input id="f-pass" type="password" autocomplete="current-password">
+        <label class="chk"><input id="f-remember" type="checkbox" checked> 이 기기에 연결 정보 기억하기</label>
+        <label class="chk"><input id="f-mp3" type="checkbox"> mp3로 변환해서 재생하기 (FLAC 등이 안 나올 때)</label>
+        <div class="row">
+          <button class="btn primary" type="submit" id="btnConnect">연결</button>
+          <button class="btn" type="button" id="btnDemo">서버 없이 둘러보기</button>
+        </div>
+      </form>
+      <p class="hint" id="setMsg" aria-live="polite"></p>
+      <div id="connInfo" hidden>
+        <p class="note" id="connText"></p>
+        <button class="btn" type="button" id="btnLogout">연결 끊기</button>
+      </div>
+      <p class="note small">비밀번호는 저장하지 않고, 로그인할 때 만든 토큰만 이 브라우저에 저장해요.</p>
+    </section>
+  </main>
+
+  <div class="player" id="player">
+    <div class="nm"><b id="pl-t">재생할 곡을 눌러 보세요</b><span id="pl-a"></span></div>
+    <div class="btns">
+      <button class="ib on" id="pl-play" type="button" aria-label="재생"></button>
+      <button class="ib" id="pl-next" type="button" aria-label="다음 곡"></button>
+    </div>
+    <div class="bar"><span id="pl-time">0:00</span><div class="tr" id="pl-track"><i id="pl-bar"></i></div><span id="pl-dur">0:00</span></div>
+  </div>
+
+  <nav class="nav" id="nav" aria-label="하단 메뉴">
+    <button type="button" data-tab="home" aria-current="page"><span data-ic="home"></span>추천</button>
+    <button type="button" data-tab="lib"><span data-ic="lib"></span>보관함</button>
+    <button type="button" data-tab="log"><span data-ic="log"></span>기록</button>
+    <button type="button" data-tab="set"><span data-ic="set"></span>설정</button>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</div>
+<audio id="audio" preload="none"></audio>
+
+<script src="js/md5.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/subsonic.js"></script>
+<script src="js/demo.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

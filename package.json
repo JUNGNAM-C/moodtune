@@ -1,0 +1,12 @@
+{
+  "name": "moodtune-navidrome",
+  "version": "0.1.0",
+  "description": "기분 키워드로 Navidrome 서버의 곡을 추천하고 재생하는 웹 앱",
+  "private": true,
+  "scripts": {
+    "start": "node server/proxy.js",
+    "mock": "node test/mock-navidrome.js",
+    "test": "node test/engine.test.js && node test/md5.test.js"
+  },
+  "engines": { "node": ">=18" }
+}
