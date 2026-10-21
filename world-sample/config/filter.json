@@ -1,0 +1,49 @@
+{
+  "_설명": "AI 음악 차단 설정. 날짜 컷오프는 쓰지 않고, 사람이 실제로 활동한 근거를 점수로 센다.",
+  "strongSignals": {
+    "wikidataOrWikipedia": 3,
+    "viaf": 2,
+    "isniOrIpi": 2,
+    "memberRelations": 2
+  },
+  "weakSignals": {
+    "officialSite": 1,
+    "bandcamp": 1,
+    "ratingVotes": 1,
+    "tagVotes": 1,
+    "multipleReleases": 1,
+    "lifeSpanBegin": 1
+  },
+  "thresholds": {
+    "passScore": 3,
+    "reviewScore": 2,
+    "tagVotesMin": 3,
+    "multipleReleasesMin": 3,
+    "memberRelationsMin": 2,
+    "weakOnlyReviewScore": 4
+  },
+  "burst": {
+    "windowDays": 31,
+    "count": 8
+  },
+  "aiPhrases": [
+    "ai[- ]generated",
+    "generated (by|with|using) (an? )?ai",
+    "artificial intelligence",
+    "\\bsuno\\b",
+    "\\budio\\b",
+    "\\bai (music|artist|band|singer|cover|voice|song|project|composer)\\b"
+  ],
+  "aiPhrasesCaseSensitive": [
+    "\\bAI\\b"
+  ],
+  "aiTagsExact": [
+    "ai",
+    "ai generated",
+    "ai-generated",
+    "ai music",
+    "suno",
+    "udio",
+    "artificial intelligence"
+  ]
+}

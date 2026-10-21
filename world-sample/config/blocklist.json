@@ -1,0 +1,5 @@
+{
+  "_설명": "항상 제외할 아티스트. mbids에는 MusicBrainz 아티스트 ID, names에는 이름(대소문자 무시)을 적는다.",
+  "mbids": [],
+  "names": []
+}

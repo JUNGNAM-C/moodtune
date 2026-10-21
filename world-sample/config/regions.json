@@ -1,0 +1,15 @@
+{
+  "genericTags": ["folk", "traditional", "world music", "indie", "singer-songwriter", "acoustic", "ambient", "experimental", "roots", "field recording", "ethnic"],
+  "regions": [
+    { "code": "MN", "name": "몽골",       "extraTags": ["throat singing", "khoomei", "overtone singing", "mongolian", "morin khuur"] },
+    { "code": "ML", "name": "말리",       "extraTags": ["griot", "desert blues", "mande", "wassoulou", "malian"] },
+    { "code": "IN", "name": "인도",       "extraTags": ["hindustani", "carnatic", "raga", "qawwali", "indian classical"] },
+    { "code": "TR", "name": "튀르키예",   "extraTags": ["turkish folk", "saz", "makam", "anatolian"] },
+    { "code": "PE", "name": "페루",       "extraTags": ["andean", "huayno", "peruvian folk"] },
+    { "code": "GE", "name": "조지아",     "extraTags": ["georgian", "polyphonic", "caucasian"] },
+    { "code": "ID", "name": "인도네시아", "extraTags": ["gamelan", "kroncong", "sundanese", "balinese", "javanese"] },
+    { "code": "IE", "name": "아일랜드",   "extraTags": ["irish traditional", "celtic", "irish folk", "sean-nós"] },
+    { "code": "ET", "name": "에티오피아", "extraTags": ["ethio-jazz", "ethiopian", "azmari", "tizita"] },
+    { "code": "KR", "name": "한국",       "extraTags": ["gugak", "korean traditional", "pansori", "korean folk"] }
+  ]
+}

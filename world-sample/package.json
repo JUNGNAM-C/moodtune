@@ -1,0 +1,11 @@
+{
+  "name": "moodtune-world-sample",
+  "version": "0.1.0",
+  "description": "무드튠 세계 전통·로컬 음악 카탈로그: 1단계 표본 수집 도구 (MusicBrainz)",
+  "private": true,
+  "scripts": {
+    "collect": "node collect.js",
+    "test": "node test/filter.test.js"
+  },
+  "engines": { "node": ">=18" }
+}
